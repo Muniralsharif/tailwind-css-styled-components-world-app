@@ -7,6 +7,8 @@ import {
     incrementByAmount,
     decrementByAmount,
 } from "../redux/reducers/counter";
+import PageContainer from "../components/containers/pageContainers";
+import Navbar from "../components/navbar";
 
 export default function Home() {
     const mount = 5;
@@ -14,52 +16,15 @@ export default function Home() {
     const dispatch = useDispatch();
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <PageContainer>
             <Head>
                 <title>Home</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="flex flex-col items-center justify-center w-full flex-1 px-4 text-center">
-                <div className="flex items-center justify-center ">
-                    <StyledHeader>
-                        Hello from the styled tailwind component
-                    </StyledHeader>
-                </div>
-                <div className="flex flex-row flex-wrap w-full justify-around  py-4 my-2">
-                    <button
-                        className="bg-blue-500 p-2 text-xl font-bold text-center text-white"
-                        aria-label="Increment value"
-                        onClick={() => dispatch(incrementByAmount(mount))}
-                    >
-                        Increment {mount}
-                    </button>
-                    <button
-                        className="bg-blue-500 p-2 text-xl font-bold text-center text-white"
-                        aria-label="Increment value"
-                        onClick={() => dispatch(increment())}
-                    >
-                        Increment
-                    </button>
-                    <span className="px-4 w-15 h-15 flex items-center text-xl font-bold bg-red-400 text-white rounded-[50%]">
-                        {count}
-                    </span>
-                    <button
-                        className="bg-white p-2 text-center text-xl font-bold  text-red-400"
-                        aria-label="Decrement value"
-                        onClick={() => dispatch(decrement())}
-                    >
-                        Decrement
-                    </button>
-                    <button
-                        className="bg-white p-2 text-center text-xl font-bold  text-red-400"
-                        aria-label="Decrement value"
-                        onClick={() => dispatch(decrementByAmount(mount))}
-                    >
-                        Decrement {mount}
-                    </button>
-                </div>
+            <main>
+                <Navbar />
             </main>
-        </div>
+        </PageContainer>
     );
 }
 
