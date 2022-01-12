@@ -9,6 +9,7 @@ import {
 } from "../redux/reducers/counter";
 import PageContainer from "../components/containers/pageContainers";
 import Navbar from "../components/navbar";
+import TopSection from "../components/containers/HomePageTopSection";
 
 export default function Home() {
     const mount = 5;
@@ -23,6 +24,7 @@ export default function Home() {
             </Head>
             <main>
                 <Navbar />
+                <TopSection />
             </main>
         </PageContainer>
     );
