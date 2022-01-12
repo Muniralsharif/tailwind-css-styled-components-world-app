@@ -12,9 +12,9 @@ const NavbarWrapper = styled.div`
         justify-between
         items-center
         text-center
-        lg:pl-12
-        lg:pr-12
-
+        lg:px-12
+        px-4
+        py-2
     `};
 `;
 const LogoContainer = styled.div`

@@ -6,13 +6,15 @@ import { slide as Menu } from "react-burger-menu";
 import { useMediaQuery } from "react-responsive";
 import { screens } from "../responsive";
 import menuStyle from "./menuStyle";
+import { useRouter } from "next/router";
+
 const ListContainer = styled.ul`
     ${tw`
         flex
         list-none
     `};
 `;
-const NavItem = styled.li(({ menu }) => [
+const NavItem = styled.li(({ menu, isActive }) => [
     menu
         ? tw`
     text-white
@@ -32,31 +34,63 @@ const NavItem = styled.li(({ menu }) => [
     transition
     duration-300
     ease-in-out
-    hover:text-gray-700
+    font-extrabold
+    hover:text-red-500
     `,
+    isActive
+        ? tw`
+        text-red-300
+
+    `
+        : null,
 ]);
 const NavLink = styled(Link)`
     ${tw`
-
+  
     `};
+    a {
+        font-weight: bold;
+    }
 `;
 const NavItems = () => {
+    const router = useRouter();
+
     const isMobile = useMediaQuery({ maxWidth: screens.sm });
     if (isMobile) {
         return (
             <Menu right styles={menuStyle}>
                 <ListContainer>
-                    <NavItem menu>
-                        <NavLink href="/">Home</NavLink>
+                    <NavItem
+                        menu
+                        isActive={router.pathname == "/" ? true : false}
+                    >
+                        <NavLink href="/">
+                            <a>Home</a>
+                        </NavLink>
                     </NavItem>
-                    <NavItem menu>
-                        <NavLink href="/cars">Cars</NavLink>
+                    <NavItem
+                        menu
+                        isActive={router.pathname == "/cars" ? true : false}
+                    >
+                        <NavLink href="/cars">
+                            <a>Cars</a>
+                        </NavLink>
                     </NavItem>
-                    <NavItem menu>
-                        <NavLink href="/services">Services</NavLink>
+                    <NavItem
+                        menu
+                        isActive={router.pathname == "/services" ? true : false}
+                    >
+                        <NavLink href="/services">
+                            <a>Services</a>
+                        </NavLink>
                     </NavItem>
-                    <NavItem menu>
-                        <NavLink href="/contact">Contact Us</NavLink>
+                    <NavItem
+                        menu
+                        isActive={router.pathname == "/contact" ? true : false}
+                    >
+                        <NavLink href="/contact">
+                            <a>Contact Us</a>
+                        </NavLink>
                     </NavItem>
                 </ListContainer>
             </Menu>
@@ -64,17 +98,25 @@ const NavItems = () => {
     }
     return (
         <ListContainer>
-            <NavItem>
-                <NavLink href="/">Home</NavLink>
+            <NavItem isActive={router.pathname == "/" ? true : false}>
+                <NavLink href="/">
+                    <a>Home</a>
+                </NavLink>
             </NavItem>
-            <NavItem>
-                <NavLink href="/cars">Cars</NavLink>
+            <NavItem isActive={router.pathname == "/cars" ? true : false}>
+                <NavLink href="/cars">
+                    <a>Cars</a>
+                </NavLink>
             </NavItem>
-            <NavItem>
-                <NavLink href="/services">Services</NavLink>
+            <NavItem isActive={router.pathname == "/services" ? true : false}>
+                <NavLink href="/services">
+                    <a>Services</a>
+                </NavLink>
             </NavItem>
-            <NavItem>
-                <NavLink href="/contact">Contact Us</NavLink>
+            <NavItem isActive={router.pathname == "/contact" ? true : false}>
+                <NavLink href="/contact">
+                    <a>Contact Us</a>
+                </NavLink>
             </NavItem>
         </ListContainer>
     );
