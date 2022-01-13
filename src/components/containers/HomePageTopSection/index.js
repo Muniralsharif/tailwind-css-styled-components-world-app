@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
+import Button from "../../button";
 const BlobImage = "/assets/images/blob.svg";
 const MclarenCarImage = "/assets/images/mclaren-orange-big.png";
 import { screens } from "./../../responsive/index";
 const TopSectionWrapper = styled.div`
-    min-height: 400px;
-    margin-top: 6em;
-
     ${tw`
         w-full
+        h-screen
         flex
         flex-row
         justify-between
         items-center
-
         px-2
         lg:px-12
     `};
@@ -127,6 +125,13 @@ const StandaloneCar = styled.div`
         top: -6em;
     }
 `;
+const ButtonWrapper = styled.div`
+    ${tw`
+        flex
+        flex-wrap
+        mt-2
+    `};
+`;
 const TopSection = () => {
     return (
         <TopSectionWrapper>
@@ -137,6 +142,10 @@ const TopSection = () => {
                     remotely at the best price for you and get the best quality
                     cars for as long as you like
                 </Description>
+                <ButtonWrapper>
+                    <Button text="Book Your Ride" />
+                    <Button theme="filled" text="Sell Your Car" />
+                </ButtonWrapper>
             </LeftContainer>
             <RightContainer>
                 <BlobContainer>
