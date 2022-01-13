@@ -10,6 +10,7 @@ import {
 import PageContainer from "../components/containers/pageContainers";
 import Navbar from "../components/navbar";
 import TopSection from "../components/containers/HomePageTopSection";
+import BookCard from "../components/bookCard";
 
 export default function Home() {
     const mount = 5;
@@ -25,6 +26,7 @@ export default function Home() {
             <main>
                 <Navbar />
                 <TopSection />
+                <BookCard />
             </main>
         </PageContainer>
     );
