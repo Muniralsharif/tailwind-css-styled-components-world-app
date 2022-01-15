@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 
-const BaseButton = styled.button`
+ const BaseButton = styled.button`
     ${tw`
         px-5
         py-3
@@ -18,7 +18,7 @@ const BaseButton = styled.button`
         transition-all
         duration-200
         ease-in-out
-        m-1
+        ml-3
     `};
 `;
 const OutlinedButton = styled(BaseButton)`
