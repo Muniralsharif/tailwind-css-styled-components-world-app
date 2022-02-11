@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 
- const BaseButton = styled.button`
+const BaseButton = styled.button`
     ${tw`
         px-5
         py-3
@@ -42,11 +42,11 @@ const FilledButton = styled(BaseButton)`
 
     `};
 `;
-const Button = ({ theme, text }) => {
+const Button = ({ theme, text, ...props }) => {
     if (theme === "filled") {
-        return <FilledButton>{text}</FilledButton>;
+        return <FilledButton {...props}>{text}</FilledButton>;
     } else {
-        return <OutlinedButton>{text}</OutlinedButton>;
+        return <OutlinedButton {...props}>{text}</OutlinedButton>;
     }
 };
 

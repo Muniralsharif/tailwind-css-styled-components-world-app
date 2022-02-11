@@ -2,12 +2,16 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { slide as Menu } from "react-burger-menu";
+import dynamic from "next/dynamic";
 import { useMediaQuery } from "react-responsive";
 import { screens } from "../responsive";
 import menuStyle from "./menuStyle";
 import { useRouter } from "next/router";
-
+const Menu = dynamic(() =>
+    import("react-burger-menu").then((slide) => {
+        slide;
+    })
+);
 const ListContainer = styled.ul`
     ${tw`
         flex
