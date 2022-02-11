@@ -11,7 +11,6 @@ import PageContainer from "../components/containers/pageContainers";
 import Navbar from "../components/navbar";
 import TopSection from "../components/containers/HomePageTopSection";
 import BookCard from "../components/bookCard";
-
 export default function Home() {
     const mount = 5;
     const count = useSelector((state) => state.counter.value);
@@ -24,7 +23,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Navbar />
+                {/* <Navbar /> */}
                 <TopSection />
                 <BookCard />
             </main>

@@ -5,7 +5,7 @@ import tw from "twin.macro";
 import Button from "../button";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { screens } from "./../responsive/index";
+
 const BookCardWrapper = styled.div`
     box-shadow: -1px 6px 25px 2px rgba(0, 0, 0, 0.61);
     -webkit-box-shadow: -1px 6px 25px 2px rgba(0, 0, 0, 0.61);
@@ -90,11 +90,23 @@ const ButtonWrapper = styled.div`
 
 const BookCard = () => {
     const [DatePicked, setDatePicked] = useState(new Date());
+
     const [DateReturn, setDateReturn] = useState(new Date());
     const [confirmDatePicked, setConfirmDatePicked] = useState(new Date());
     const [confirmDateReturn, setConfirmDateReturn] = useState(new Date());
     const [OpenPicked, setOpenPicked] = useState(false);
     const [OpenReturn, setOpenReturn] = useState(false);
+
+    const bookingHandler = () => {
+        console.log("start", DatePicked.toLocaleDateString());
+        console.log("end", DateReturn.toLocaleDateString());
+        // Here we calculate the number of days between the two dates
+        const oneDay = 24 * 60 * 60 * 1000;
+        const days = Math.round(
+            Math.abs(DateReturn.getTime() - DatePicked.getTime()) / oneDay
+        );
+        console.log("duration", days, "days");
+    };
 
     return (
         <BookCardWrapper>
@@ -108,7 +120,7 @@ const BookCard = () => {
                         setOpenReturn(false);
                     }}
                 >
-                    PickUp Date
+                    Pick Up Date
                     {OpenPicked ? (
                         <IconSpan>
                             <FaAngleDown size="20px" />
@@ -125,12 +137,15 @@ const BookCard = () => {
                             Pick up Starts Day
                         </h1>
                         <DateCalender
+                            calendarType={"Arabic"}
                             onChange={setDatePicked}
                             value={DatePicked}
                         />
+
                         <ButtonWrapper>
                             <Button
                                 onClick={() => {
+                                    console.log(DatePicked);
                                     setConfirmDatePicked(DatePicked);
                                     setOpenPicked(false);
                                 }}
@@ -138,6 +153,7 @@ const BookCard = () => {
                             />
                             <Button
                                 onClick={() => {
+                                    console.log("hello im working");
                                     setOpenPicked(false);
                                 }}
                                 theme="filled"
@@ -169,22 +185,37 @@ const BookCard = () => {
                     )}
                 </Name>
                 {OpenReturn && (
-                    <CalenderWrapper>
+                    <CalenderWrapper calendarType="Arabic">
                         <h1 className="font-bold text-center rounded text-white w-full bg-red-600">
                             Return Day
                         </h1>
                         <DateCalender
                             onChange={setDateReturn}
                             value={DateReturn}
+                            calendarType={"Arabic"}
                         />
                         <ButtonWrapper>
-                            <Button text="Confirm" />
-                            <Button theme="filled" text="Cancel" />
+                            <Button
+                                onClick={() => {
+                                    console.log(DateReturn);
+                                    setConfirmDateReturn(DateReturn);
+                                    setOpenReturn(false);
+                                }}
+                                text="Confirm"
+                            />
+                            <Button
+                                onClick={() => {
+                                    console.log("hello im working");
+                                    setOpenReturn(false);
+                                }}
+                                theme="filled"
+                                text="Cancel"
+                            />
                         </ButtonWrapper>
                     </CalenderWrapper>
                 )}
             </CardItem>
-            <Button text="Book Your Ride" />
+            <Button onClick={bookingHandler} text="Book Your Ride" />
         </BookCardWrapper>
     );
 };
